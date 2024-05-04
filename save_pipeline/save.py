@@ -8,6 +8,7 @@ import datetime
 from sqlalchemy import create_engine
 import sqlalchemy as db
 import random
+from datetime import timezone
 
 
 # Connection settings
@@ -76,7 +77,7 @@ def subscribe_and_publish(mqtt_client):
             except json.JSONDecodeError:
                 value = msg.payload.decode("utf-8")
             device = msg.topic.split("/")[-2]
-            msg_processed = {"timestamp":datetime.datetime.now()}
+            msg_processed = {"timestamp":datetime.datetime.now(timezone.utc)}
             msg_processed["device"] = device
             if device == "card_reader":
                 if msg.topic.split("/")[-3]=="response":
