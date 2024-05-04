@@ -1,0 +1,7 @@
+paho-mqtt==1.6.1
+pymongo==4.7.1
+sqlalchemy
+psycopg-binary
+psycopg2
+fastapi
+uvicorn
