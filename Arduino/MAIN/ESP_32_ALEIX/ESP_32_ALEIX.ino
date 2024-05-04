@@ -219,8 +219,10 @@ void guaranteedAccess(){
 void deniedAccess(){
   lcd.setCursor(0, 0);
   lcd.print("Access Denied");
+  digitalWrite(Buzzer, HIGH);
   digitalWrite(Red_rfid, HIGH);
   delay(2000);
+  digitalWrite(Buzzer, LOW);
   lcd.clear();
   digitalWrite(Red_rfid, LOW);
 }
@@ -316,8 +318,6 @@ void loop(){
     readT();
     readH();
   }
-  readT();
-  readH();
   detectMotion();
   sendDataToMQTT();
 }
