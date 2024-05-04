@@ -137,16 +137,16 @@ def run():
     mqtt_client = connect_mqtt()
     subscribe_and_publish(mqtt_client)
 
-    engine = create_engine("postgresql://root:example@localhost:5432/HackUPC", future=True)
+    engine = create_engine("postgresql://root:example@localhost:5432/root", future=True)
 
     metadata_obj = db.MetaData()
     timeseries = db.Table(
         'timeseries',                                        
         metadata_obj,                                    
-        db.Column('id', db.String(20)), 
         db.Column('timestamp', db.TIMESTAMP),                    
+        db.Column('id', db.String(20)), 
         db.Column('device', db.String(20)),
-        db.Column('value', db.Integer),         
+        db.Column('value', db.Float),         
     )
 
     cards = db.Table(
