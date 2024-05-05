@@ -109,29 +109,21 @@ def subscribe_and_publish(mqtt_client):
     mqtt_client.on_message = on_message
 
 def publish(client):
-    msg_count = 1
-    devices = ["door", "light", "heating", "AC", "noise"]
-    while True:
-        device = random.choice(devices)
-        # topic = f"actuators/{device}/1"
-        topic = f"actuators/1"
-        time.sleep(1)
-        msg = str(random.randint(0, 1))
-        result = client.publish(topic, msg)
-        # result: [0, 1]
-        status = result[0]
-        if status == 0:
-            print(f"Send `{msg}` to topic `{topic}`")
-        else:
-            print(f"Failed to send message to topic {topic}")
-        msg_count += 1
-        time.sleep(1)
-        if msg_count > 1:
-            break
+    topic = f"actuators/1"
+    time.sleep(1)
+    msg = str(random.randint(0, 1))
+    result = client.publish(topic, msg)
+    # result: [0, 1]
+    status = result[0]
+    if status == 0:
+        print(f"Send `{msg}` to topic `{topic}`")
+    else:
+        print(f"Failed to send message to topic {topic}")
+
+
 
 def run():
     global mqtt_client, timeseries, engine, cards
-    time.sleep(20)
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
     
     mqtt_client = connect_mqtt()

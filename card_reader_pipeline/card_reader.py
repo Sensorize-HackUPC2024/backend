@@ -4,10 +4,6 @@ import time
 import json
 import Config
 import os
-import datetime
-from sqlalchemy import create_engine
-import sqlalchemy as db
-import random
 
 
 # Connection settings
@@ -106,7 +102,6 @@ def publish(client, value):
 
 def run():
     global mqtt_client, timeseries, engine
-    time.sleep(20)
     logging.basicConfig(format='%(asctime)s - %(levelname)s: %(message)s', level=logging.INFO)
     
     mqtt_client = connect_mqtt()
